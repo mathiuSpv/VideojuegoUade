@@ -45,4 +45,29 @@ def hacerPregunta(banco_preguntas: list):
     for key, value in respuestas.items():
         print(f"{key}){value.rstrip()}")
     respuestaUsuario = input("Ingrese una letra: ")
-    return respuestaUsuario.lower() == preguntaActual["correcta"]
+    while respuestaUsuario not in list(respuestas.keys()):
+        respuestaUsuario = input("Ingrese una letra valida: ")
+    return (respuestaUsuario.lower() == preguntaActual["correcta"], preguntaActual)
+
+
+def encuentroMalo(arteMalvados:dict,bancoPreguntas:list):
+    print(arteMalvados[random.choice(list(arteMalvados.keys()))])
+    print("Has caido en mi trampa aventurero, responde mi pregunta si quieres vivir.🐱‍🐉")
+    retornos = hacerPregunta(bancoPreguntas)
+    bancoPreguntas.remove(retornos[1])
+    return retornos[0]
+
+def encuentroBueno(arteBuenos:dict,bancoPreguntas:list):
+    print(arteBuenos[random.choice(list(arteBuenos.keys()))])
+    print("Oh un aventurero, responde mi pregunta si quieres ganar una recompensa.😉")
+
+def main():
+    bancoPreguntas = crearBanco("assets/preguntas.txt")
+    personajesMalos = generarPersonajes("assets/personajesMalos.txt")
+    print(len(bancoPreguntas))
+    encuentroMalo(personajesMalos,bancoPreguntas)
+    print(len(bancoPreguntas))
+
+
+
+main()
