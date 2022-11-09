@@ -1,5 +1,5 @@
 Cuantos hijos tiene Shakira?;5;2;3;Ninguno;b 
-Cual es la edad de Tini Stoessel?;223;30;25;28;c
+Cual es la edad de Tini Stoessel?;23;30;25;28;c
 Quien pinto el cuadro "Las Meninas"?;Dali;Van Goh;Monet;Velazquez;d
 Cuantos bytes son 8000 bits?;1000;100;10;500;a
 Donde se ubica la ciudad de Johannesburgo?;Nueva Zelanda;Sudafrica;Australia;Noruega;b
