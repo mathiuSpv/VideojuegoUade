@@ -26,16 +26,20 @@ def generarPersonajes(ruta=r"assets/personajes.txt"):
 def crearBanco(ruta="assets/ideas.txt"):
     with open(ruta, "r") as archivo:
         lineas = archivo.readlines()
-        mases = sacarMas(lineas)
-        bancoPreguntas = []
-        for i in mases:
+        print(lineas)
+        preguntas = []
+        letras = ["a","b","c","d"]
+        for linea in lineas:
             preguntaActual = {}
-            preguntaActual["pregunta"] = lineas[i+1].rstrip()
-            letras = ["a", "b", "c", "d"]
-            preguntaActual["respuestas"] = dict(zip(letras, lineas[i+2:i+6]))
-            preguntaActual["correcta"] = lineas[i+6].rstrip()
-            bancoPreguntas.append(preguntaActual)
-        return bancoPreguntas
+            linea_actual = linea.split(";")
+            preguntaActual["pregunta"] = linea_actual[0]
+            preguntaActual["respuestas"] = dict(zip(letras,linea_actual[1:5]))
+            preguntaActual["correcta"] = linea_actual[5]
+            preguntas.append(preguntaActual)
+        return preguntas
+            
+
+            
 
 
 def hacerPregunta(banco_preguntas: list):
@@ -63,8 +67,8 @@ def encuentroBueno(arteBuenos:dict,bancoPreguntas:list):
 
 def main():
     bancoPreguntas = crearBanco("assets/preguntas.txt")
-    personajesMalos = generarPersonajes("assets/personajesMalos.txt")
     print(len(bancoPreguntas))
+    personajesMalos = generarPersonajes("assets/personajesMalos.txt")
     encuentroMalo(personajesMalos,bancoPreguntas)
     print(len(bancoPreguntas))
 
