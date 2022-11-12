@@ -24,5 +24,4 @@ ___
 * [ ] Crear el sistema de vidas.
 * [ ] Crear el sistema de navegacion por el mapa.
 * [ ] Crear el sistema de guardado y de puntuacion.
-* [ ] Hola que tal
 
