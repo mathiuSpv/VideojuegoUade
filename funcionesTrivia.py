@@ -34,7 +34,6 @@ def crearBanco(ruta: str) -> list:
     try:
         with open(ruta, "r") as archivo:
             lineas = archivo.readlines()
-            print(lineas)
             preguntas = []
             letras = ["a", "b", "c", "d"]
             for linea in lineas:
@@ -43,7 +42,7 @@ def crearBanco(ruta: str) -> list:
                 preguntaActual["pregunta"] = linea_actual[0]
                 preguntaActual["respuestas"] = dict(
                     zip(letras, linea_actual[1:5]))
-                preguntaActual["correcta"] = linea_actual[5]
+                preguntaActual["correcta"] = linea_actual[5].rstrip()
                 preguntas.append(preguntaActual)
             return preguntas
     except FileNotFoundError:
@@ -88,14 +87,22 @@ def encuentroBueno(arteBuenos: dict, bancoPreguntas: list) -> bool:
         print("No se cargaron personajes o hubo un error en el archivo.")
 
 
+def encuentroFinal(tesoros:dict):
+    print(tesoros[random.choice(list(tesoros.keys()))])
+
+
+def elegirSistema():
+    opcion = input("Ingrese su sistema operativo (a para windows b para linux): ")
+    while opcion.lower() not in ["a","b"]:
+        opcion = input("Ingrese una opcion valida: ")
+    if opcion.lower() == "a":
+        return "cls"
+    else:
+        return "clear"
+
 def main():
     bancoPreguntas = crearBanco("assets/preguntas.txt")
-    personajesMalos = generarPersonajes("")
-    personajesBuenos = generarPersonajes("assets/personajesBuenos.txt")
-    tesorosObjetivos = generarPersonajes("assets/tesorosObjetivos.txt")
-    encuentroMalo(personajesMalos, bancoPreguntas)
-    encuentroBueno(personajesBuenos, bancoPreguntas)
-    print(tesorosObjetivos["tesoro"])
+    print(hacerPregunta(bancoPreguntas))
 
-
-main()
+if __name__ == "__main__":
+    main()
