@@ -1,7 +1,14 @@
 import random
 
+"""Valores int de cada evento"""
+MURALLA= 0
+VACIO= 1
+PERSONAJE= 2
+SALIDA= 3
+ALIADOS= 4
+ENEMIGOS= 5
 
-DIFICULTAD= 1.2 #GENERAR ALGUN VALOR PARA AUMENTAR ESTO O QUE AUMENTE 0.3 CADA DIF
+CANTSPAWN= random.randint(12,14)
 
 #PILA FUNCIONES
 def _initBloque():
@@ -16,87 +23,81 @@ def _datoBloque(bloque: list):
     dato= bloque[-1]
     bloque.pop()
     return dato
+
+def _longitudBloque(bloque: list):
+    return len(bloque)
 ############################
 
 def genMapa(filas= 18, columnas= 32):
     """Funcion que permite crear la room del juego, usa un diccionario como un mapa y su Key es 'Key[0:1]' su fila y 'Key[1:3]' su columna respectiva"""
-    filas= (filas if filas==22 else 18) + 65
-    columnas= (columnas if columnas==28 else 32)
+    filas= (filas if filas==18 else 18) + 65
+    columnas= (columnas if columnas==32 else 32)
     SALA= dict()
-    BLOQUESVACIOS= set()
     _crearSala(SALA, filas, columnas)
-    _generadores(SALA, BLOQUESVACIOS, filas, columnas)
+    _generadores(SALA, filas, columnas)
     return SALA    
 
 def _crearSala(sala: dict, filas: int, columnas: int):
     numId= 1; letraId= 65
     while letraId <= filas:
         ID= chr(letraId)+(str(numId) if numId>9 else f"0{numId}")
-        sala[ID]= 0
+        sala[ID]= MURALLA
         numId+=1
         if numId > columnas:
             letraId+=1; numId= 1
 
-def _generadores(sala: dict, bloquesVacios: set, filas: int, columnas: int):
-    bloquesCerrados= set()
+def _generadores(sala: dict, filas: int, columnas: int):
+    bloquesVacios= set()
     bloquesInflexion= _initBloque()
-    _definirContorno(bloquesCerrados, filas, columnas)
     _genEntradas(sala, bloquesInflexion, filas, columnas)
     
-    bloqueEntrada= _datoBloque(bloquesInflexion) # EN _genEntradas() UTLIZAMOS ESTA LISTA PARA EXTRAER COMO PRIMER DATO LA ENTRADA DE LA SALA
+    bloqueEntrada= _datoBloque(bloquesInflexion)
     
     _genPuntosInflexion(bloquesInflexion, bloqueEntrada, filas, columnas)
     _genRandom(bloquesVacios, bloqueEntrada, bloquesInflexion)
     
-    for cord in bloquesVacios:
-        sala[cord]= 1
-    eventos= set()
-    for i in range(9):
-        i= random.choice(list(bloquesVacios))
-        while i in eventos:
-            i= random.choice(list(bloquesVacios))
-        eventos.add(i)
-        sala[i]= random.randint(4,5)
+    bloquesEliminar = set()
+    for bloque in bloquesVacios:
+        borrar= _limpiarBloqueAlrededor(bloque,bloquesVacios,8,False)
+        if borrar:
+            bloquesEliminar.add(bloque)
+    
+    bloquesDisponibles= bloquesVacios - bloquesEliminar
 
-def _definirContorno(bloquesCerrados: set, filas: int, columnas: int):
-    numId= 1; letraId= 65
-    while letraId <= filas:
-        bloquesCerrados.add(chr(letraId)+'01')
-        bloquesCerrados.add(chr(letraId)+f'{columnas}')
-        letraId+= 1
-    while numId <= columnas:
-        bloquesCerrados.add('A'+(str(numId) if numId>9 else f'0{numId}'))
-        bloquesCerrados.add(chr(filas)+(str(numId) if numId>9 else f'0{numId}'))
-        numId+= 1
+    bloquesEvento= dict()
+    _genEventos(bloquesDisponibles, bloquesEvento)
+    
+    for cord in bloquesDisponibles:
+        sala[cord]= VACIO
+    for cord,valor in bloquesEvento.items():
+        sala[cord]= valor
+        
 
 def _genEntradas(sala: dict, puntosInflexion: list, filas: int, columnas: int):
-    VACIO= 1; ENTRADAVALUE= 2; SALIDAVALUE= 3
     entradaFila= chr(random.randint(66,filas-1)) #EMPEZAR DE B COMO ACCSI HASTA LA PENULTIMA LETRA COMO ACCSI
     salidaFila= chr(random.randint(66,filas-1))
     entradaId= entradaFila+'01'
     primerSlotEntrada= entradaFila+'02'
     salidaId= salidaFila+f"{columnas}"
     primerSlotSalida= salidaFila+f"{columnas-1}"
-    sala[entradaId]= ENTRADAVALUE; sala[primerSlotEntrada]= VACIO
-    sala[salidaId]= SALIDAVALUE; sala[primerSlotSalida]= VACIO
+    sala[entradaId]= PERSONAJE; sala[primerSlotEntrada]= VACIO
+    sala[salidaId]= SALIDA; sala[primerSlotSalida]= VACIO
     _agregarBloque(puntosInflexion, primerSlotSalida)
     _agregarBloque(puntosInflexion, primerSlotEntrada)
     
 def _genPuntosInflexion(puntosInflexion: list, entrada: str, filas: int, columnas: int):
-    cantMax= random.randint(12,14) #SE PUEDE MODIFICAR Y PODER AUMENTAR RESPECTO A LA DIFICULTAD
     cuadrante= 1
     vecesHecho= 1
-    while vecesHecho < cantMax:
+    while vecesHecho < CANTSPAWN:
         seleccion= _genPunto(filas, columnas, cuadrante)
         while seleccion in puntosInflexion:
             seleccion= _genPunto(filas, columnas, cuadrante)
         _agregarBloque(puntosInflexion, seleccion)
         vecesHecho+= 1
-        if vecesHecho == cantMax//2:
+        if vecesHecho == CANTSPAWN//2:
             cuadrante= 0
-    print(puntosInflexion)
 
-def _genPunto(filas, columnas, cuadrante):
+def _genPunto(filas: int, columnas: int, cuadrante):
     sumValor= 15* cuadrante
     maxValor= ((columnas+1)//2)+sumValor
     seleccionFila= chr(random.randint(66, filas-1))
@@ -108,6 +109,11 @@ def _genRandom(bloquesVacios: set, entrada: str, puntosInflexion: list):
     if puntosInflexion:
         llegada= _datoBloque(puntosInflexion)
         _genCamino(bloquesVacios, entrada, llegada)
+        longitudPuntos= _longitudBloque(puntosInflexion)
+        if (longitudPuntos*2)== CANTSPAWN:
+            entrada2= random.choice(list(bloquesVacios))
+            llegada2= _datoBloque(puntosInflexion)
+            _genCamino(bloquesVacios, entrada2, llegada2)
         _genRandom(bloquesVacios, llegada, puntosInflexion)
 
 def _genCamino(bloquesVacios, direccionInicio: str, direccionLlegada: str):
@@ -146,20 +152,72 @@ def _genBloques(bloquesVacios: set, fila: int, columna: int, longitudFila: int, 
             columna= _columna; longitudColumna+= -1*vecesMov
         mov= random.choice(["fila","columna"])
     
-
+def _genEventos(bloquesDisponibles: set, bloquesEventos: dict):
+    bloquesDisponibles= list(bloquesDisponibles)
+    cantEnemigos= random.randint(9,12)
+    cantAliados= random.randint(2,3)
+    numEvento= 0
+    while numEvento != cantEnemigos:
+        if numEvento >= cantAliados:
+            eventoNegativo= random.choice(bloquesDisponibles)
+            eventoRenovar= _limpiarBloqueAlrededor(eventoNegativo, set(bloquesEventos), 1, True)
+            while eventoRenovar:
+                eventoNegativo= random.choice(bloquesDisponibles)
+                eventoRenovar= _limpiarBloqueAlrededor(eventoNegativo, set(bloquesEventos), 1, True)
+            bloquesEventos[eventoNegativo]= ENEMIGOS
+            
+        else:
+            eventoNegativo= random.choice(bloquesDisponibles)
+            eventoRenovar= _limpiarBloqueAlrededor(eventoNegativo, set(bloquesEventos), 1, True)
+            while eventoRenovar:
+                eventoNegativo= random.choice(bloquesDisponibles)
+                eventoRenovar= _limpiarBloqueAlrededor(eventoNegativo, set(bloquesEventos), 1, True)
+            bloquesEventos[eventoNegativo]= ENEMIGOS
+            
+            eventoPositivo= random.choice(bloquesDisponibles)
+            eventoRenovar= _limpiarBloqueAlrededor(eventoPositivo, set(bloquesEventos), 1, True)
+            while eventoRenovar:
+                eventoPositivo= random.choice(bloquesDisponibles)
+                eventoRenovar= _limpiarBloqueAlrededor(eventoPositivo, set(bloquesEventos), 1, True)
+            bloquesEventos[eventoPositivo]= ALIADOS  
+        numEvento+=1
+    
+def _limpiarBloqueAlrededor(bloque: str, removerCasos: set, cantMaximaCaso: int, revisarMismo: bool):
+    quitar= False; maxIguales= 0; bloquesColumna= -1
+    filaBase,columnaBase= ord(bloque[0:1]), int(bloque[1:])
+    while bloquesColumna != 2:
+        try:
+            cont= 1 if bloquesColumna!= 0 or revisarMismo else 2
+            columnaTest= columnaBase+ bloquesColumna
+            columnaTest= ('0' if columnaTest < 10 else '')+ str(columnaTest)
+            for mov in range(-1,2,cont):
+                filaTest= chr(filaBase+ mov)
+                puntoTest= filaTest+columnaTest
+                if puntoTest in removerCasos:
+                    maxIguales+=1
+                    if maxIguales == cantMaximaCaso:
+                        quitar= True
+                        raise KeyError
+            bloquesColumna+= 1
+        except KeyError:
+            break
+    return quitar
+            
+        
+        
+    
 
 def main():
     sala= genMapa()
-    
     
     for i in sala.keys():
         print(i, end= '  ')
         if i[1:3] == '32':
             print('')
     print('\n')
-    
-    colores = {0: "⬛", 1: "⬜", 2: "👨",
-           3: "🟥", 4: "🟩", 5: "🟨"}
+
+    colores = {0: "⬜", 1: "⬛", 2: "👨",
+           3: "🟩", 4: "🟨", 5: "🟥"}
     for i in sala.keys():
         print(colores[sala[i]], end= '')
         if i[1:3] == '32':
