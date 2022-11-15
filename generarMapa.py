@@ -228,7 +228,7 @@ def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
 
 def imprimirMapa(mapa: dict):
     colores = {-1: "  ", 0: "⬜", 1: "⬛", 2: "👨",
-           3: "🟩", 4: "🟨", 5: "🟥"}
+           3: "🟩", 4: "⬛", 5: "⬛"}
     for i in mapa.keys():
         print(colores[mapa[i]], end= '')
         if i[1:3] == '32':
