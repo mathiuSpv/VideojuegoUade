@@ -1,8 +1,3 @@
-# PROYECTO UADE
-
-___
-
-
 ## REGLAS DE PROYECTO
 
 * Los nombres de las variables se deben escribir en camel case y en español.

@@ -1,0 +1,2 @@
+puntos=40
+vidas=3
