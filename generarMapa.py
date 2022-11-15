@@ -136,28 +136,32 @@ def _calcularCamino(direccionInicio: str, direccionLlegada: str):
         
 def _genBloques(bloquesVacios: set, fila: int, columna: int, distanciaFila: int, distanciaColumna: int):
     """Genera de movimientos tanto de forma horizontal y vertical siempre acercandose al punto que debe conectar"""
-    movFila, movColumna= (1 if distanciaFila> 0 else -1),(1 if distanciaFila> 0 else -1)
-    mov= random.choice(["fila","columna"])
-    while distanciaFila != 0 or distanciaColumna !=  0:
-        if mov== "fila" and distanciaFila != 0:
+    movFila, movColumna = (1 if distanciaFila > 0 else -
+                           1), (1 if distanciaColumna > 0 else -1)
+    mov = random.choice(["fila", "columna"])
+    while distanciaFila != 0 or distanciaColumna != 0:
+        if mov == "fila" and distanciaFila != 0:
             if distanciaFila < 5 and distanciaFila > -5:
-                vecesMov= distanciaFila
+                vecesMov = distanciaFila
             else:
-                vecesMov= random.randint(1,4)*movFila
-            for i in range(0,vecesMov+movFila,movFila):
-                _fila= chr(ord(fila)+i)
-                bloquesVacios.add(_fila+ columna)
-            fila= _fila; distanciaFila+= -1*vecesMov
+                vecesMov = random.randint(1, 4)*movFila
+            for i in range(0, vecesMov+movFila, movFila):
+                _fila = chr(ord(fila)+i)
+                bloquesVacios.add(_fila + columna)
+            fila = _fila
+            distanciaFila += -1*vecesMov
         elif mov == "columna" and distanciaColumna != 0:
             if distanciaColumna < 5 and distanciaColumna > -5:
-                vecesMov= distanciaColumna
+                vecesMov = distanciaColumna
             else:
-                vecesMov= random.randint(1,4)*movColumna
-            for j in range(0,vecesMov+movColumna,movColumna):
-                _columna= (str(int(columna)+j) if int(columna)+j>9 else '0'+ str(int(columna)+j))
-                bloquesVacios.add(fila+ _columna)
-            columna= _columna; distanciaColumna+= -1*vecesMov
-        mov= random.choice(["fila","columna"])
+                vecesMov = random.randint(1, 4)*movColumna
+            for j in range(0, vecesMov+movColumna, movColumna):
+                _columna = (str(int(columna)+j) if int(columna) +
+                            j > 9 else '0' + str(int(columna)+j))
+                bloquesVacios.add(fila + _columna)
+            columna = _columna
+            distanciaColumna += -1*vecesMov
+        mov = random.choice(["fila", "columna"])
     
 def _genEventos(bloquesDisponibles: set, bloquesEventos: dict):
     """Genera eventos"""
@@ -239,9 +243,9 @@ def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
         columnaId= ('0' if columnaId < 10 else '')+ str(columnaId)
         for movFila in range(-1,2):
             filaId= chr(posFila+movFila)
-            renocerPunto= filaId+columnaId
+            reconocerPunto= filaId+columnaId
             try:
-                mapaSuplente[renocerPunto]= mapa[renocerPunto]
+                mapaSuplente[reconocerPunto]= mapa[reconocerPunto]
             except KeyError:
                 pass
         verColumna+= 1
@@ -261,11 +265,7 @@ def main():
     mapa= genMapa()
     mapaInvisible= genMapaInvisible()
     
-    for i in mapa.keys():
-        print(i, end= ' ')
-        if i[1:3] == '32':
-            print('')
-    print('\n')
+    imprimirMapa(mapa)
 
 if __name__ == "__main__":
     main()
