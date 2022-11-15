@@ -35,7 +35,7 @@ def genMapa(filas= 18, columnas= 32):
     filas= (filas if filas==18 else 18) + 65
     columnas= (columnas if columnas==32 else 32)
     MAPA= dict()
-    _crearMapa(MAPA, filas, columnas, VACIO)
+    _crearMapa(MAPA, filas, columnas, MURALLA)
     _generadores(MAPA, filas, columnas)
     return MAPA    
 
@@ -222,7 +222,7 @@ def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
         verColumna+= 1
 
 def imprimirMapa(mapa: dict):
-    colores = {-1: "  ",0: "⬜", 1: "⬛", 2: "👨",
+    colores = {-1: "◾",0: "⬜", 1: "⬛", 2: "👨",
            3: "🟩", 4: "🟨", 5: "🟥"}
     for i in mapa.keys():
         print(colores[mapa[i]], end= '')
@@ -241,9 +241,8 @@ def main():
         if i[1:3] == '32':
             print('')
     print('\n')
-
-    imprimirMapa()
-    pass
-
+    imprimirMapa(mapa)
+    imprimirMapa(mapaVacio)
+    
 if __name__ == "__main__":
     main()
