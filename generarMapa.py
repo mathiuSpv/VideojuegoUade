@@ -236,13 +236,14 @@ def main():
     mapa= genMapa()
     mapaJugador= genMapaJugador()
     
-    for i in mapa.keys():
+    """for i in mapa.keys():
         print(i, end= ' ')
         if i[1:3] == '32':
             print('')
     print('\n')
-    imprimirMapa(mapa)
-    imprimirMapa(mapaJugador)
-    
+
+    imprimirMapa()
+    pass
+
 if __name__ == "__main__":
     main()
