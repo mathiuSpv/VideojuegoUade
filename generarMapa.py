@@ -1,8 +1,8 @@
 import random
 
-"""Valores int de cada evento"""
-
+"""UTILIZAR SOLO EN EL MAPA QUE VE EL JUGADOR:"""
 NADA= -1
+"""UTILIZAR PARA EL MAPA GENERADOR"""
 MURALLA= 0
 VACIO= 1
 PERSONAJE= 2
@@ -206,7 +206,9 @@ def _limpiarBloqueAlrededor(bloque: str, removerCasos: set, cantMaximaCaso: int,
 
 def genMapaJugador():
     mapaSuplente= dict()
-    _crearMapa(mapaSuplente, 18, 32, NADA)
+    filas= 65+18
+    columnas= 32
+    _crearMapa(mapaSuplente, filas, columnas, NADA)
     return mapaSuplente
 
 def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
@@ -222,7 +224,7 @@ def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
         verColumna+= 1
 
 def imprimirMapa(mapa: dict):
-    colores = {-1: "◾",0: "⬜", 1: "⬛", 2: "👨",
+    colores = {-1: "  ", 0: "⬜", 1: "⬛", 2: "👨",
            3: "🟩", 4: "🟨", 5: "🟥"}
     for i in mapa.keys():
         print(colores[mapa[i]], end= '')
@@ -243,6 +245,7 @@ def main():
     # print('\n')
 
     imprimirMapa(mapa)
+    imprimirMapa(mapaJugador)
     pass
 
 if __name__ == "__main__":
