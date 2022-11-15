@@ -1,8 +1,3 @@
-# PROYECTO UADE
-
-___
-
-
 ## REGLAS DE PROYECTO
 
 * Los nombres de las variables se deben escribir en camel case y en español.
@@ -19,9 +14,8 @@ ___
 ## LISTA DE TAREAS
 
 * [x] Generar el mapa de forma aleatoria.
-* [ ] Generar los enemigos y los espacios con comodines.
+* [x] Generar los enemigos y los espacios con comodines.
 * [ ] Crear la parte de trivia.
-* [ ] Crear el sistema de vidas.
-* [ ] Crear el sistema de navegacion por el mapa.
-* [ ] Crear el sistema de guardado y de puntuacion.
-
+* [x] Crear el sistema de vidas y comodines.
+* [x] Crear el sistema de navegacion por el mapa.
+* [x] Crear el sistema de guardado y de puntuacion.

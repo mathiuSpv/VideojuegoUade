@@ -1,0 +1,51 @@
+Cuantos hijos tiene Shakira?;5;2;3;Ninguno;b 
+Cual es la edad de Tini Stoessel?;23;30;25;28;c
+Quien pinto el cuadro "Las Meninas"?;Dali;Van Goh;Monet;Velazquez;d
+Cuantos bytes son 8000 bits?;1000;100;10;500;a
+Donde se ubica la ciudad de Johannesburgo?;Nueva Zelanda;Sudafrica;Australia;Noruega;b
+A que barrio portegno pertenece el club de futbol San Lorenzo?;Almagro;Banfield;Burzaco;Boedo;d
+Cuantos cuadros tiene un tablero de ajedrez?;24;64;32;48;b
+Cuales son los colores de los cinco anillos olimpicos?;Amarillo, azul, negro, rojo y verde;Amarillo, azul, violeta, rojo y verde;Amarillo, azul, rojo, violeta y naranja;Amarillo, azul, negro, naranja y verde;a
+Cual fue la primera pelicula de Disney?;Dumbo;La Cenicienta;Blancanieves;El rey Leon;b
+De los cinco sentidos, cual es el que se desarrolla primero?;Tacto;Olfato;Gusto;Vision;b
+Cuantos elementos tiene la tabla periodica?;124;100;118;152;c
+Quien pinto el "Guernica"?;Picasso;Da Vinci;Klimt;Boticelli;a
+Cual es la lengua mas hablada del mundo?;Ingles;Chino Mandarin;Espagnol;Frances;a
+Cuantas temporadas tiene la serie "Grey's Anatomy?;18;20;19;15;c
+Quien escribio "Cien agnos de soledad"?;Gabriel Garcia Marquez;Jorge Luis Borges;Julio Cortazar;Roberto Arlt;a
+En que provincia Argentina se encuentra la localidad de Cafayate?;Jujuy;Salta;Santa Cruz;Chubut;b
+Que paises conforman la Peninsula Iberica?;Espagna y Portugal;Italia y Espagna;Francia y Alemania;Rusia y Japon;a
+Cual es la flor nacional de Argentina?;Tulipan;Jazmin;Ceibo;Clavel;c
+Donde se produce la respiracion celular?;Nucleo;Mitocondria;Citoplasma;Ribosoma;b
+Quien escribio Mujercitas?;Lewis Carrol;Louisa May Alcott;Charlotte Bronte;Charles Dickens;b
+De que agno es la cancion "Corazon Delator" de Soda Stereo?;1988;1980;1990;1996;a
+Quien es el protagonista de la pelicula:"El extragno caso de Benjamin Button"?;Leonardo Di Caprio;Johnny Depp;Brad Pitt;Keanu Reaves;c
+Cuantos agnos tiene Susana Gimenez?;60;78;70;68;b
+En que agno se estreno la pelicula "E.T"?;1975;1980;1982;1990;c
+Cuantas franjas tiene la bandera de Estados Unidos?;10;13;15;9;b
+Donde se celebraron los primeros Juegos Olimpicos?;Atenas;Paris;Egipto;Corea;a
+Cuantas zonas horarias tiene Rusia?;11;5;7;4;a
+Cual es la capital de Bolivia?;Sucre;La Paz;Ninguna;Ambas;d
+Quien es el autor de la frase "Pienso, luego existo"?;Platon;Galileo Galilei;Descartes;Socrates;c
+Cual es el libro mas vendido en el mundo despues de la Biblia?;El Segnor de los Anillos;Don Quijote de la Mancha;El Principito;La Odisea;b
+La sal comun esta formada por dos elementos, cuales son?;Sodio y potasio;Sodio y cloro;Sodio y carbono;Cristal y sodio.;b
+Cuantos jugadores por equipo participan en un partido de voleibol?;3 jugadores;4 jugadores;6 jugadores;8 jugadores;c
+En que orden se presentaron los modelos atomicos?;Thomson, Dalton, Rutherford, Bohr;Dalton, Thomson, Rutherford, Cuantico;Bohr, Rutherford, Cuantico, Einstein;Dalton, Einstein, Cuantico, Sheldon Cooper;b
+Cual es el pais mas pequegno del mundo?;Vaticano;Panama;Malta;Monaco;a
+Cual es el libro mas vendido en el mundo despues de la Biblia?;El segnor de los anillos;Don Quijote;El Principito;La odisea;b
+Cuantos decimales tiene el numero pi?;Tres;Cien;Infinitos;Mil;c
+Por que elementos esta formada la sal?;Sodio y cloro;Sodio y carbono;Cristal y sodio; Sodio y potasio;a
+Cuanto tiempo tarda la luz del Sol en llegar a la Tierra?;12 min;1hr;8 min;8 seg;c
+En que periodo de la prehistoria fue descubierto el fuego?;Neolitico;Paleolitico;Edad de piedra;Edad media;b
+Cual es la montagna as alta en el continente americano?;Monte Everest;Monte Fuji;Aconcagua;Pico Bolivar;c
+Cuantos estados tiene Estados Unidos?;49;50;51;59;b
+Cual de los siguientes paises se extiende por dos continentes?;Rusia;China;Egipto;Tanzania;a
+Cual es el simbolo quimico del oro?;Ao;Aa;Or;Au;d
+Quien pinto la bobeda de la capilla sixtina?;Miguel Angel;Leonardo Da Vinci;Rafael;Donatello;a
+Cuantos grados son necesarios para que dos angulos sean complementarios?;90;60;45;80;a
+Cuando se inicializo la Primera Guerra Mundial?;1914;1916;1918;1910;a
+La moneda oficial de Japon es:;Yuan;Yen;Yan;Yun;b
+De que pais fue presidente Nelson Mandela?;Libia;Guinea;Sudafrica;Filipinas;c
+Que color se forma cuando se combina rojo y amarillo?;Naranja;Verde;Violeta;Gris;a
+Donde se encuentra Machu Picchu?;Colombia;Mexico;Brasil;Peru;d
+Cual de estos paises tiene como idioma principal el frances?;Libano;Andorra;Haiti;Suecia;c
