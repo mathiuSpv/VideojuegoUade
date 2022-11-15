@@ -86,7 +86,7 @@ def _genEntradas(mapa: dict, puntosInflexion: list, filas: int, columnas: int):
     _agregarBloque(puntosInflexion, primerSlotSalida)
     _agregarBloque(puntosInflexion, primerSlotEntrada)
     
-def _genPuntosInflexion(puntosInflexion: list, entrada: str, filas: int, columnas: int):
+def _genPuntosInflexion(puntosInflexion: list, filas: int, columnas: int):
     cuadrante= 1
     vecesHecho= 1
     while vecesHecho < CANTSPAWN:
@@ -204,7 +204,7 @@ def _limpiarBloqueAlrededor(bloque: str, removerCasos: set, cantMaximaCaso: int,
             break
     return quitar
 
-def genMapaSuplente():
+def genMapaJugador():
     mapaSuplente= dict()
     _crearMapa(mapaSuplente, 18, 32, NADA)
     return mapaSuplente
@@ -234,7 +234,7 @@ def imprimirMapa(mapa: dict):
 
 def main():
     mapa= genMapa()
-    mapaVacio= genMapaSuplente()
+    mapaJugador= genMapaJugador()
     
     for i in mapa.keys():
         print(i, end= ' ')
@@ -242,7 +242,7 @@ def main():
             print('')
     print('\n')
     imprimirMapa(mapa)
-    imprimirMapa(mapaVacio)
+    imprimirMapa(mapaJugador)
     
 if __name__ == "__main__":
     main()
