@@ -236,13 +236,14 @@ def main():
     mapa= genMapa()
     mapaVacio= genMapaSuplente()
     
-    for i in mapa.keys():
+    """for i in mapa.keys():
         print(i, end= ' ')
         if i[1:3] == '32':
             print('')
-    print('\n')
+    print('\n')"""
 
-    imprimirMapa()
+    imprimirMapa(mapa)
+    #imprimirMapa(mapaVacio)
     pass
 
 if __name__ == "__main__":
