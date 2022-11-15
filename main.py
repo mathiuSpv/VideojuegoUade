@@ -25,7 +25,7 @@ def main():
     tesorosObjetivos = generarPersonajes("assets/tesorosObjetivos.txt")
     if respuestaSiNo("Desea cargar una partida guardada?"):
         mapaBase, puntos, vidas,mapaVisible = recuperarPartida(
-            "mapaGuardado.txt", "estadisticasGuardadas.txt","mapaJugador.txt")
+            "assets\mapaGuardado.txt", "assets\estadisticasGuardadas.txt", "assets\mapaJugador.txt")
     else:    
         puntos, vidas, mapaBase,mapaVisible = PUNTOS_INICIALES, VIDAS_INICIALES, genMapa(),genMapaJugador()
 
@@ -86,7 +86,7 @@ def main():
         """Si el juego termina correctamente, se guarda el puntaje"""
         print("El juego ha finalizado")
         nombreJugador = input("Ingresa tu nombre: ")
-        with open("ranking.txt", "a") as f:
+        with open(r"assets\ranking.txt", "a") as f:
             f.write(f"{nombreJugador};{puntos}\n")
         if respuestaSiNo("Quieres ver el ranking?"):
             leerRanking("ranking.txt")
