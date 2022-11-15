@@ -55,7 +55,7 @@ def _generadores(mapa: dict, filas: int, columnas: int):
     
     bloqueEntrada= _datoBloque(bloquesInflexion)
     
-    _genPuntosInflexion(bloquesInflexion, bloqueEntrada, filas, columnas)
+    _genPuntosInflexion(bloquesInflexion, filas, columnas)
     _genRandom(bloquesVacios, bloqueEntrada, bloquesInflexion)
     
     bloquesEliminar = set()
@@ -236,13 +236,13 @@ def main():
     mapa= genMapa()
     mapaJugador= genMapaJugador()
     
-    """for i in mapa.keys():
-        print(i, end= ' ')
-        if i[1:3] == '32':
-            print('')
-    print('\n')
+    # for i in mapa.keys():
+    #     print(i, end= ' ')
+    #     if i[1:3] == '32':
+    #         print('')
+    # print('\n')
 
-    imprimirMapa()
+    imprimirMapa(mapa)
     pass
 
 if __name__ == "__main__":
