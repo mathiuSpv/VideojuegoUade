@@ -68,11 +68,7 @@ def _generadores(mapa: dict, filas: int, columnas: int):
 
     bloquesEvento= dict()
     _genEventos(bloquesDisponibles, bloquesEvento)
-    
-    for cord in bloquesDisponibles:
-        mapa[cord]= VACIO
-    for cord,valor in bloquesEvento.items():
-        mapa[cord]= valor
+    _genCompleto(mapa, bloquesDisponibles, bloquesEvento)
         
 def _genEntradas(mapa: dict, puntosInflexion: list, filas: int, columnas: int):
     entradaFila= chr(random.randint(66,filas-1)) #EMPEZAR DE B COMO ACCSI HASTA LA PENULTIMA LETRA COMO ACCSI
@@ -98,7 +94,7 @@ def _genPuntosInflexion(puntosInflexion: list, filas: int, columnas: int):
         if vecesHecho == CANTSPAWN//2:
             cuadrante= 0
 
-def _genPunto(filas: int, columnas: int, cuadrante):
+def _genPunto(filas: int, columnas: int, cuadrante: int):
     sumValor= 15* cuadrante
     maxValor= ((columnas+1)//2)+sumValor
     seleccionFila= chr(random.randint(66, filas-1))
@@ -203,6 +199,12 @@ def _limpiarBloqueAlrededor(bloque: str, removerCasos: set, cantMaximaCaso: int,
         except KeyError:
             break
     return quitar
+
+def _genCompleto(mapa: dict ,bloques: set, bloquesEventos: dict):
+    for cord in bloques:
+        mapa[cord]= VACIO
+    for cord,valor in bloquesEventos.items():
+        mapa[cord]= valor
 
 def genMapaJugador():
     mapaSuplente= dict()
