@@ -220,7 +220,10 @@ def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
         for movFila in range(-1,2):
             filaId= chr(posFila+movFila)
             renocerPunto= filaId+columnaId
-            mapaSuplente[renocerPunto]= mapa[renocerPunto]
+            try:
+                mapaSuplente[renocerPunto]= mapa[renocerPunto]
+            except KeyError:
+                pass
         verColumna+= 1
 
 def imprimirMapa(mapa: dict):
