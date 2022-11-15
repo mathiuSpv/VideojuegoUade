@@ -2,7 +2,7 @@ from funcionesMovimiento import *
 from funcionesTrivia import *
 from funcionesInterfaz import *
 from funcionesRanking import *
-from generarMapa import genMapa,genMapaJugador,reconocerEntorno
+from generarMapa import *
 import os
 import time
 
@@ -27,7 +27,7 @@ def main():
         mapaBase, puntos, vidas,mapaVisible = recuperarPartida(
             "assets\mapaGuardado.txt", "assets\estadisticasGuardadas.txt", "assets\mapaJugador.txt")
     else:    
-        puntos, vidas, mapaBase,mapaVisible = PUNTOS_INICIALES, VIDAS_INICIALES, genMapa(),genMapaJugador()
+        puntos, vidas, mapaBase,mapaVisible = PUNTOS_INICIALES, VIDAS_INICIALES, genMapa(),genMapaInvisible()
 
     estadoJuego = True
     while estadoJuego:
@@ -63,7 +63,7 @@ def main():
                 if respuestaSiNo("Quieres seguir jugando?: "):
                     mapaNuevo = genMapa()
                     mapaBase = mapaNuevo
-                    mapaVisible = genMapaJugador()
+                    mapaVisible = genMapaInvisible()
                 else:
                     estadoJuego = False
                     finalCorrecto = True
