@@ -1,6 +1,8 @@
 import random
 
 """Valores int de cada evento"""
+
+NADA= -1
 MURALLA= 0
 VACIO= 1
 PERSONAJE= 2
@@ -32,24 +34,24 @@ def genMapa(filas= 18, columnas= 32):
     """Funcion que permite crear la room del juego, usa un diccionario como un mapa y su Key es 'Key[0:1]' su fila y 'Key[1:3]' su columna respectiva"""
     filas= (filas if filas==18 else 18) + 65
     columnas= (columnas if columnas==32 else 32)
-    SALA= dict()
-    _crearSala(SALA, filas, columnas)
-    _generadores(SALA, filas, columnas)
-    return SALA    
+    MAPA= dict()
+    _crearMapa(MAPA, filas, columnas, VACIO)
+    _generadores(MAPA, filas, columnas)
+    return MAPA    
 
-def _crearSala(sala: dict, filas: int, columnas: int):
+def _crearMapa(mapa: dict, filas: int, columnas: int, rellenar: int):
     numId= 1; letraId= 65
     while letraId <= filas:
         ID= chr(letraId)+(str(numId) if numId>9 else f"0{numId}")
-        sala[ID]= MURALLA
+        mapa[ID]= rellenar
         numId+=1
         if numId > columnas:
             letraId+=1; numId= 1
 
-def _generadores(sala: dict, filas: int, columnas: int):
+def _generadores(mapa: dict, filas: int, columnas: int):
     bloquesVacios= set()
     bloquesInflexion= _initBloque()
-    _genEntradas(sala, bloquesInflexion, filas, columnas)
+    _genEntradas(mapa, bloquesInflexion, filas, columnas)
     
     bloqueEntrada= _datoBloque(bloquesInflexion)
     
@@ -68,20 +70,19 @@ def _generadores(sala: dict, filas: int, columnas: int):
     _genEventos(bloquesDisponibles, bloquesEvento)
     
     for cord in bloquesDisponibles:
-        sala[cord]= VACIO
+        mapa[cord]= VACIO
     for cord,valor in bloquesEvento.items():
-        sala[cord]= valor
+        mapa[cord]= valor
         
-
-def _genEntradas(sala: dict, puntosInflexion: list, filas: int, columnas: int):
+def _genEntradas(mapa: dict, puntosInflexion: list, filas: int, columnas: int):
     entradaFila= chr(random.randint(66,filas-1)) #EMPEZAR DE B COMO ACCSI HASTA LA PENULTIMA LETRA COMO ACCSI
     salidaFila= chr(random.randint(66,filas-1))
     entradaId= entradaFila+'01'
     primerSlotEntrada= entradaFila+'02'
     salidaId= salidaFila+f"{columnas}"
     primerSlotSalida= salidaFila+f"{columnas-1}"
-    sala[entradaId]= PERSONAJE; sala[primerSlotEntrada]= VACIO
-    sala[salidaId]= SALIDA; sala[primerSlotSalida]= VACIO
+    mapa[entradaId]= PERSONAJE; mapa[primerSlotEntrada]= VACIO
+    mapa[salidaId]= SALIDA; mapa[primerSlotSalida]= VACIO
     _agregarBloque(puntosInflexion, primerSlotSalida)
     _agregarBloque(puntosInflexion, primerSlotEntrada)
     
@@ -190,8 +191,8 @@ def _limpiarBloqueAlrededor(bloque: str, removerCasos: set, cantMaximaCaso: int,
             cont= 1 if bloquesColumna!= 0 or revisarMismo else 2
             columnaTest= columnaBase+ bloquesColumna
             columnaTest= ('0' if columnaTest < 10 else '')+ str(columnaTest)
-            for mov in range(-1,2,cont):
-                filaTest= chr(filaBase+ mov)
+            for movFila in range(-1,2,cont):
+                filaTest= chr(filaBase+ movFila)
                 puntoTest= filaTest+columnaTest
                 if puntoTest in removerCasos:
                     maxIguales+=1
@@ -202,26 +203,46 @@ def _limpiarBloqueAlrededor(bloque: str, removerCasos: set, cantMaximaCaso: int,
         except KeyError:
             break
     return quitar
-            
+
+def genMapaSuplente():
+    mapaSuplente= dict()
+    _crearMapa(mapaSuplente, 18, 32, NADA)
+    return mapaSuplente
+
+def reconocerEntorno(mapa: dict, mapaSuplente: dict, posPersonaje: str):
+    posFila, posColumna= ord(posPersonaje[0:1]), int(posPersonaje[1:])
+    verColumna= -1
+    while verColumna != 2:
+        columnaId= posColumna+ verColumna
+        columnaId= ('0' if columnaId < 10 else '')+ str(columnaId)
+        for movFila in range(-1,2):
+            filaId= chr(posFila+movFila)
+            renocerPunto= filaId+columnaId
+            mapaSuplente[renocerPunto]= mapa[renocerPunto]
+        verColumna+= 1
+
+def imprimirMapa(mapa: dict):
+    colores = {-1: "  ",0: "⬜", 1: "⬛", 2: "👨",
+           3: "🟩", 4: "🟨", 5: "🟥"}
+    for i in mapa.keys():
+        print(colores[mapa[i]], end= '')
+        if i[1:3] == '32':
+            print()
         
         
     
 
 def main():
-    sala= genMapa()
+    mapa= genMapa()
+    mapaVacio= genMapaSuplente()
     
-    for i in sala.keys():
-        print(i, end= '  ')
+    for i in mapa.keys():
+        print(i, end= ' ')
         if i[1:3] == '32':
             print('')
     print('\n')
 
-    colores = {0: "⬜", 1: "⬛", 2: "👨",
-           3: "🟩", 4: "🟨", 5: "🟥"}
-    for i in sala.keys():
-        print(colores[sala[i]], end= '')
-        if i[1:3] == '32':
-            print()
+    imprimirMapa()
     pass
 
 if __name__ == "__main__":
