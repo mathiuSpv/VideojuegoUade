@@ -34,7 +34,6 @@ En que orden se presentaron los modelos atomicos?;Thomson, Dalton, Rutherford, B
 Cual es el pais mas pequegno del mundo?;Vaticano;Panama;Malta;Monaco;a
 Cual es el libro mas vendido en el mundo despues de la Biblia?;El segnor de los anillos;Don Quijote;El Principito;La odisea;b
 Cuantos decimales tiene el numero pi?;Tres;Cien;Infinitos;Mil;c
-Por que elementos esta formada la sal?;Sodio y cloro;Sodio y carbono;Cristal y sodio; Sodio y potasio;a
 Cuanto tiempo tarda la luz del Sol en llegar a la Tierra?;12 min;1hr;8 min;8 seg;c
 En que periodo de la prehistoria fue descubierto el fuego?;Neolitico;Paleolitico;Edad de piedra;Edad media;b
 Cual es la montagna as alta en el continente americano?;Monte Everest;Monte Fuji;Aconcagua;Pico Bolivar;c

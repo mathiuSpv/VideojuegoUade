@@ -116,27 +116,32 @@ def encuentroBueno(personajesBuenos: dict, bancoPreguntas: list,mapaActual,punto
         print("Respuesta incorrecta, no ganas nada.")
     return puntos,vidas,mapaJugador
 
-def unComodin(vidas: int, puntos: int,mapaVisible: dict,mapaBase) -> tuple:
+
+def unComodin(vidas: int, puntos: int, mapaVisible: dict, mapaBase) -> tuple:
     """Recibe las vidas y los puntos del jugador y devuelve las vidas y los puntos del jugador con un comodin."""
     try:
         elegirComodin = True
         while elegirComodin:
             chance = random.randint(1, 12)
-            if 1 <= chance <=1:
+            if 1 <= chance <= 1:
                 puntos += 30
                 print("Has ganado 30 puntos")
                 elegirComodin = False
-            elif 2 <= chance <= 5 and BLOQUE_MALO_REVELADO not in list(mapaVisible.values()):
-                enemigo = encontrarBloque(mapaBase,5)
-                mapaVisible[enemigo] = BLOQUE_MALO_REVELADO
-                print("Muestra la posicion de un malvado")
-                elegirComodin = False
-            elif 6<= chance <= 9:
+            elif 2 <= chance <= 5:
+                enemigo = encontrarBloque(mapaBase, 5)
+                if mapaVisible[enemigo] == BLOQUE_MALO_REVELADO:
+                    pass
+                else:
+                    mapaVisible[enemigo] = BLOQUE_MALO_REVELADO
+                    mapaBase[enemigo] = BLOQUE_MALO_REVELADO
+                    print("Muestra la posicion de un malvado")
+                    elegirComodin = False
+            elif 6 <= chance <= 9:
                 print("Has ganado 80 puntos")
                 puntos += 80
                 elegirComodin = False
             elif 10 <= chance <= 11 and (BLOQUE_FINAL not in list(mapaVisible.values())):
-                salida = encontrarBloque(mapaBase,BLOQUE_FINAL)
+                salida = encontrarBloque(mapaBase, BLOQUE_FINAL)
                 mapaVisible[salida] = BLOQUE_FINAL
                 print("Muestra la posicion de la salida")
                 elegirComodin = False
@@ -146,7 +151,7 @@ def unComodin(vidas: int, puntos: int,mapaVisible: dict,mapaBase) -> tuple:
                 elegirComodin = False
             else:
                 continue
-            return vidas,puntos,mapaVisible
+            return vidas, puntos, mapaVisible
 
     except IndexError:
         print("Ya no quedan mas enemigos por revelar")

@@ -2,5 +2,5 @@
 
 ___
 
-Esta carpeta de recursos contiene los archivos de texto necesarios para crear los personajes buenos, malos y trofeos y contiene todas las preguntas de trivia.
+Esta carpeta de recursos contiene los archivos de texto necesarios para crear los personajes buenos, malos y trofeos, contiene todas las preguntas de trivia,los rankings y los archivos de guardado.  
 
