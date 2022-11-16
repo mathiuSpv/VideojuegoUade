@@ -48,3 +48,15 @@ De que pais fue presidente Nelson Mandela?;Libia;Guinea;Sudafrica;Filipinas;c
 Que color se forma cuando se combina rojo y amarillo?;Naranja;Verde;Violeta;Gris;a
 Donde se encuentra Machu Picchu?;Colombia;Mexico;Brasil;Peru;d
 Cual de estos paises tiene como idioma principal el frances?;Libano;Andorra;Haiti;Suecia;c
+Quien nacio primero?;Camilo; Ricky Martin; David Bisbal; Chayanne;d
+Con que colores se forma el rosa?;Rojo y azul; Rojo y blanco; Amarillo y rojo; Verde y azul;b
+Cuantos años tiene Lionel Messi?;30;28;40;35;d
+En que continente se encuentra Australia?;Oceania; Asia; Africa; Europa;a
+Cuantos Bytes son 3KiB?;3000; 3072; 1024; 300;b
+Cual de ellos es el numero pi?;5.14; 14.3; 3.14; 1.4;c
+Quien canta: Do I wanna know ?;U2; Coldplay; Artic Monkeys; The Strokes;c 
+Cuantos paises limitan con Argentina?;4; 3; 6; 5;c
+Cuanto duro la Guerra de los 100 años?;50;116;99;100;b
+Cual de los siguientes paises no jugara en el Mundial Qatar 2022?;Italia; Brasil; Arabia Saudita; Portugal;a
+De que signo del zodiaco es alguien que nacio el 26 de diciembre?;Sagitario; Libra; Capricornio; Acuario;c
+Con cual pais no limita Francia?;Italia;España;Portugal;Suiza;c
