@@ -88,7 +88,7 @@ def main():
         print("El juego ha finalizado")
         nombreJugador = input("Ingresa tu nombre: ")
         with open(r"assets\ranking.txt", "a") as f:
-            f.write(f"{nombreJugador};{puntos}\n")
+            f.write(f"\n{nombreJugador};{puntos}\n")
         if respuestaSiNo("Quieres ver el ranking?"):
             leerRanking(r"assets\ranking.txt")
         print("Gracias por jugar.")

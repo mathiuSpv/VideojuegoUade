@@ -1,2 +1,2 @@
-puntos=420
-vidas=3
+puntos=180
+vidas=2
