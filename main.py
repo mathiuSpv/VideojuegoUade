@@ -15,7 +15,7 @@ BLOQUE_FINAL = 3
 BLOQUE_MALO_REVELADO = 6
 
 def main():
-    print("Bienvenido a la aventura de los 100 pasos")
+    print("Bienvenido a el Juego")
 
     sistemaOperativo = elegirSistema()
     borrarPantalla = lambda : os.system(sistemaOperativo) #noqa
