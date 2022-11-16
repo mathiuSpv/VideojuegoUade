@@ -90,7 +90,7 @@ def main():
         with open(r"assets\ranking.txt", "a") as f:
             f.write(f"{nombreJugador};{puntos}\n")
         if respuestaSiNo("Quieres ver el ranking?"):
-            leerRanking("ranking.txt")
+            leerRanking(r"assets\ranking.txt")
         print("Gracias por jugar.")
 
 
