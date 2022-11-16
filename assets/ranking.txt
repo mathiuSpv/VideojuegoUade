@@ -6,4 +6,3 @@ El mati;1040
 w;70
 & C:/Users/sebas/AppData/Local/Programs/Python/Python311/python.exe c:/Users/sebas/Documents/GitHub/labGameUADE/main.py;80
 s;560
-Matias;0

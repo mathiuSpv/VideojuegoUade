@@ -26,3 +26,12 @@ def leerRanking(ruta):
         print("No se encontro el archivo, el juego puede no funcionar correctamente.")
     except IndexError:
         print("Hubo un error en el ranking, puede no funcionar correctamente.")
+
+
+
+def main():
+    leerRanking(r"assets\ranking.txt")
+
+
+if __name__ == "__main__":
+    main()

@@ -12,7 +12,7 @@ TIEMPO_A_DORMIR = 1
 BLOQUE_MALO = 5
 BLOQUE_BUENO = 4
 BLOQUE_FINAL = 3
-
+BLOQUE_MALO_REVELADO = 6
 
 def main():
     print("Bienvenido a la aventura de los 100 pasos")
@@ -24,18 +24,18 @@ def main():
     personajesBuenos = generarPersonajes("assets/personajesBuenos.txt")
     tesorosObjetivos = generarPersonajes("assets/tesorosObjetivos.txt")
     if respuestaSiNo("Desea cargar una partida guardada?"):
-        mapaBase, puntos, vidas,mapaVisible = recuperarPartida(
+        mapaBase, puntos, vidas,mapaInvisible = recuperarPartida(
             "assets\mapaGuardado.txt", "assets\estadisticasGuardadas.txt", "assets\mapaJugador.txt")
     else:    
-        puntos, vidas, mapaBase,mapaVisible = PUNTOS_INICIALES, VIDAS_INICIALES, genMapa(),genMapaInvisible()
+        puntos, vidas, mapaBase,mapaInvisible = PUNTOS_INICIALES, VIDAS_INICIALES, genMapa(),genMapaInvisible()
 
     estadoJuego = True
     while estadoJuego:
         try:
-            reconocerEntorno(mapaBase, mapaVisible, encontrarJugador(mapaBase))
-            imprimirInterfaz(mapaVisible, puntos, vidas)
+            reconocerEntorno(mapaBase, mapaInvisible, encontrarJugador(mapaBase))
+            imprimirInterfaz(mapaInvisible, puntos, vidas)
             bloque = hacerMovimiento(mapaBase)
-            if bloque == BLOQUE_MALO:
+            if bloque in [BLOQUE_MALO,BLOQUE_MALO_REVELADO]:
                 """Encuentro con un personaje malo"""
                 borrarPantalla()
                 puntos, vidas, estadoJuego = encuentroMalo(
@@ -50,8 +50,8 @@ def main():
             elif bloque == BLOQUE_BUENO:
                 """Encuentro con un personaje bueno"""
                 borrarPantalla()
-                puntos, vidas,mapaVisible= encuentroBueno(
-                    personajesBuenos, bancoPreguntas,mapaBase, puntos, vidas,mapaVisible)
+                puntos, vidas,mapaInvisible= encuentroBueno(
+                    personajesBuenos, bancoPreguntas,mapaBase, puntos, vidas,mapaInvisible)
                 time.sleep(TIEMPO_A_DORMIR)
 
             elif bloque == BLOQUE_FINAL:
@@ -63,7 +63,7 @@ def main():
                 if respuestaSiNo("Quieres seguir jugando?: "):
                     mapaNuevo = genMapa()
                     mapaBase = mapaNuevo
-                    mapaVisible = genMapaInvisible()
+                    mapaInvisible = genMapaInvisible()
                 else:
                     estadoJuego = False
                     finalCorrecto = True
@@ -76,7 +76,8 @@ def main():
                 estadoJuego = False
                 finalCorrecto = False
                 if respuestaSiNo("Quieres sobreescribir el juego guardado?"):
-                    guardarValores(puntos, vidas, mapaBase,"mapaGuardado.txt","estadisticasGuardadas.txt",mapaVisible,"mapaJugador.txt")
+                    guardarValores(puntos, vidas, mapaBase, "assets\mapaGuardado.txt",
+                                   "assets\estadisticasGuardadas.txt", mapaInvisible, "assets\mapaJugador.txt")
                     print("Juego guardado")
                     time.sleep(TIEMPO_A_DORMIR)
             else:
@@ -89,7 +90,7 @@ def main():
         with open(r"assets\ranking.txt", "a") as f:
             f.write(f"{nombreJugador};{puntos}\n")
         if respuestaSiNo("Quieres ver el ranking?"):
-            leerRanking("ranking.txt")
+            leerRanking(r"assets\ranking.txt")
         print("Gracias por jugar.")
 
 
