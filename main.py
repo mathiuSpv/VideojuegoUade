@@ -35,7 +35,7 @@ def main():
             reconocerEntorno(mapaBase, mapaInvisible, encontrarJugador(mapaBase))
             imprimirInterfaz(mapaInvisible, puntos, vidas)
             bloque = hacerMovimiento(mapaBase)
-            if bloque == BLOQUE_MALO:
+            if bloque in [BLOQUE_MALO,BLOQUE_MALO_REVELADO]:
                 """Encuentro con un personaje malo"""
                 borrarPantalla()
                 puntos, vidas, estadoJuego = encuentroMalo(
@@ -54,7 +54,7 @@ def main():
                     personajesBuenos, bancoPreguntas,mapaBase, puntos, vidas,mapaInvisible)
                 time.sleep(TIEMPO_A_DORMIR)
 
-            elif bloque in [BLOQUE_FINAL,BLOQUE_MALO_REVELADO]:
+            elif bloque == BLOQUE_FINAL:
                 """Si caes en un tesoro, se termina el nivel"""
                 borrarPantalla()
                 encuentroFinal(tesorosObjetivos)

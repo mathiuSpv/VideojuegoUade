@@ -1,2 +1,2 @@
-puntos=0
+puntos=420
 vidas=3
