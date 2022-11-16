@@ -76,7 +76,8 @@ def main():
                 estadoJuego = False
                 finalCorrecto = False
                 if respuestaSiNo("Quieres sobreescribir el juego guardado?"):
-                    guardarValores(puntos, vidas, mapaBase,"mapaGuardado.txt","estadisticasGuardadas.txt",mapaInvisible,"mapaJugador.txt")
+                    guardarValores(puntos, vidas, mapaBase, "assets\mapaGuardado.txt",
+                                   "assets\estadisticasGuardadas.txt", mapaInvisible, "assets\mapaJugador.txt")
                     print("Juego guardado")
                     time.sleep(TIEMPO_A_DORMIR)
             else:
