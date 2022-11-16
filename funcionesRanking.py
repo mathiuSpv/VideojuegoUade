@@ -30,7 +30,7 @@ def leerRanking(ruta):
 
 
 def main():
-    leerRanking(r"assets\ranking.txt")
+    leerRanking(r"assets/ranking.txt")
 
 
 if __name__ == "__main__":
